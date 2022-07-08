@@ -1,27 +1,47 @@
-class Coords:
-    def __init__(self, key='C', coord_type=bool()):
-        """
+import json
 
-        :param key: Coord key
-        :param coord_type: True/False ==  Major/Minor
+
+class Coords:
+    def __init__(self, key='C', scale=bool()):
+        """ Simple class for generating coords given a key and scale (bool: major/minor)
+
+            :param key: Coord key
+            :param scale: True/False ==  Major/Minor
         """
         self.key = key
-        self.coord_type = 'major' if coord_type is True else 'minor'
+        self.scale = 'major' if scale is True else 'minor'
         self.alfabet = ['A', 'Ais/Bes', 'B', 'C', 'Cis/Des', 'D', 'Dis/Es', 'E', 'F', 'Fis/Ges', 'G', 'Gis/As']
         self.major_scale = [2, 2, 1, 2, 2, 2, 1]
         self.minor_scale = []
+        self.coords = {
+            'key': self.key,
+            'scale': self.scale,
+            'coords': {
+                'a': [],  # e.g. ['a', b', 'Cis/Des']
+                'b': [],
+                'c': [],
+                'd': [],
+                'e': [],
+                'f': [],
+                'g': [],
+            },
+            'jazz': {'a': [], 'b': [], 'c': [], 'd': [], 'e': [], 'f': [], 'g': []}
+        }  # <- used to store the coords created in self.generate(*args, **kwargs)
 
     def generate(self, jazz=False):
-        # Nu doe ik dit
+        # TODO: Create coords and store them in a dictionary (self.coords) for easy lookup
         pass
 
+        # TODO: Extra is to create jazzy-coords ;)
+        if jazz is True:
+            pass
+
     def print_coord(self):
-        print('Key:', self.key)
-        print('Type:', self.coord_type)
+        print(json.dumps(self.coords, indent=2))
 
 
 def main():
-    coords = Coords(key='D', coord_type=False)
+    coords = Coords(key='D', scale=False)
     coords.generate(jazz=True)
     coords.print_coord()
 
