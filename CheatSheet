@@ -20,3 +20,24 @@ a.append('b')
 a = ['a', 'b']
 del a[1]
 # Now: a = ['a']
+
+# Get last item of a list as a list
+a = ['a', 'b', 'c', 'd']
+b = a[-1:]
+# Now: b = ['d']
+
+Get last item of a list as the item itself
+a = ['a', 'b', 'c', 'd']
+b = a[-1]
+# Now: b = 'd'
+
+Get items from a list as a list from index
+a = ['a', 'b', 'c', 'd']
+b = a[1:]
+# Now: b = ['b', 'c', 'd']
+
+Concatenate two lists
+a = ['a', 'b', 'c', 'd']
+b = [1, 2]
+c = a + b
+# Now: c = ['a', 'b', 'c', 'd', 1, 2]
