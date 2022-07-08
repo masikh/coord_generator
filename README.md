@@ -1,4 +1,4 @@
 # coord_generator
 
-A simple coord generator class for deriving coord given a key.
+A simple coord generator class for deriving coords given a key.
 
