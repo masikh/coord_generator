@@ -3,3 +3,8 @@ for i in range(len(a) - 1, -1, -1):
     print(i)
     if a % 2 == 0:
         print(a)
+
+a = {'coords': {'a': []}}
+b = ['c', 'e', 'f']
+a['coords']['a'] = b
+# Now: a = {'coords': {'a': ['c', 'e', 'f']}}
