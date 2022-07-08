@@ -17,36 +17,44 @@ class Coords:
         self.coords = {
             'key': self.key,
             'scale': 'Major' if scale is True else 'Minor',
-            'coords': {
-                'a': [],  # e.g. ['a', 'b', 'Cis/Des']
-                'b': [],
-                'c': [],
-                'd': [],
-                'e': [],
-                'f': [],
-                'g': [],
-            },
-            'jazz': {'a': [], 'b': [], 'c': [], 'd': [], 'e': [], 'f': [], 'g': []}
-        }  # <- used to store the coords created in self.generate(*args, **kwargs)
+            'coords': {x: [] for x in self.alfabet}  # Create a dict from self.alfabet e.g. {'A': [], ...}
+        }  # <- data structure used to store the coords created in self.generate()
 
-    def generate(self, jazz=False):
-        # TODO: Create coords and store them in a dictionary (self.coords) for easy lookup
-        pass
+    def get_key_notes(self):
+        # Get the index in alfabet of our key
+        index = self.alfabet.index(self.key)
 
-        # TODO: Extra is to create jazzy-coords ;)
-        if jazz is True:
-            pass
+        # Get the notes from the alfabet belonging to our key
+        key_notes = list()
+        for i in range(len(self.scale)):
+            key_notes.append(self.alfabet[index % 12])  # On overflow modulo will keep us on track
+            index += self.scale[i]  # Increment the index with the scale-steps
+        return key_notes
+
+    def generate(self):
+        # Get the notes belonging to our key and scale
+        key_notes = self.get_key_notes()
+
+        # Create coords in key
+        length = len(key_notes)
+        for i in range(length):
+            coord_tones = [key_notes[i % length], key_notes[(i + 2) % length], key_notes[(i + 4) % length]]
+            self.coords['coords'][key_notes[i]] = coord_tones
+
+        # Cleanup coords not part of the key
+        coords = self.coords['coords']
+        self.coords['coords'] = {x: coords[x] for x in coords if len(coords[x])}  # 0 == False
 
     def print_coord(self):
-        print(json.dumps(self.coords, indent=2))
+        print(json.dumps(self.coords, indent=2))  # json dumps coverts a dict to a string, indent makes it pretty
 
 
 def main():
-    coords = Coords(key='D', scale=False)
-    coords.generate(jazz=True)
+    coords = Coords(key='C', scale=True)  # Create a class instance
+    coords.generate()  # Call class methods ...
     coords.print_coord()
 
 
 if __name__ == '__main__':
-    main()
+    main()  # <- Programs entry point
 
