@@ -9,13 +9,14 @@ class Coords:
             :param scale: True/False ==  Major/Minor
         """
         self.key = key
-        self.scale = 'major' if scale is True else 'minor'
-        self.alfabet = ['A', 'Ais/Bes', 'B', 'C', 'Cis/Des', 'D', 'Dis/Es', 'E', 'F', 'Fis/Ges', 'G', 'Gis/As']
         self.major_scale = [2, 2, 1, 2, 2, 2, 1]
-        self.minor_scale = []
+        self.minor_scale = [2, 1, 2, 2, 1, 2, 2]
+        self.scale = self.major_scale if scale is True else self.minor_scale
+        self.alfabet = ['A', 'Ais/Bes', 'B', 'C', 'Cis/Des', 'D', 'Dis/Es', 'E', 'F', 'Fis/Ges', 'G', 'Gis/As']
+
         self.coords = {
             'key': self.key,
-            'scale': self.scale,
+            'scale': 'Major' if scale is True else 'Minor',
             'coords': {
                 'a': [],  # e.g. ['a', b', 'Cis/Des']
                 'b': [],
