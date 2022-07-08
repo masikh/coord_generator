@@ -18,7 +18,7 @@ class Coords:
             'key': self.key,
             'scale': 'Major' if scale is True else 'Minor',
             'coords': {
-                'a': [],  # e.g. ['a', b', 'Cis/Des']
+                'a': [],  # e.g. ['a', 'b', 'Cis/Des']
                 'b': [],
                 'c': [],
                 'd': [],

@@ -1,10 +1,22 @@
+# Go backwards on a list
 a = [1, 2, 3]
 for i in range(len(a) - 1, -1, -1):
     print(i)
     if a % 2 == 0:
         print(a)
 
+# Add something to a dict
 a = {'coords': {'a': []}}
 b = ['c', 'e', 'f']
 a['coords']['a'] = b
 # Now: a = {'coords': {'a': ['c', 'e', 'f']}}
+
+# Concatenate an item to a list
+a = ['a']
+a.append('b')
+# Now: a = ['a', 'b']
+
+# Remove an item from a list
+a = ['a', 'b']
+del a[1]
+# Now: a = ['a']
